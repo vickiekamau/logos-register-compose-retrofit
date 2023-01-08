@@ -81,27 +81,8 @@ fun LoginPage(navController:NavController) {
                     .fillMaxWidth()
                     .padding(horizontal = 10.dp)
             )
-            OutlinedTextField(
-                value = passwordValue.value,
-                onValueChange = { passwordValue.value = it },
-                trailingIcon = {
-                    IconButton(onClick = { passwordVisibility.value = !passwordVisibility.value }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_password),
-                            contentDescription = "password visibility",
-                            tint = if (passwordVisibility.value) Color.Black else Color.Gray
 
-                        )
-                    }
-                },
-                visualTransformation = if (passwordVisibility.value) VisualTransformation.None else PasswordVisualTransformation(),
-                label = { Text(text = "Enter Password") },
-                placeholder = { Text(text = "Password") },
-                singleLine = true,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 10.dp)
-            )
+            PasswordTextField(text = passwordValue.value, labelText = "Enter Password", onTextChanged = { passwordValue.value = it })
 
             Button(
                 onClick = { inputValidation(emailValue.value,passwordValue.value,navController) },

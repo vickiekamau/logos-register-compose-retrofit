@@ -100,67 +100,9 @@ fun RegisterPage(navController: NavController,
                 )
             }
 
+            PasswordTextField(text = passwordValue.value, labelText = "Enter Password", onTextChanged = { passwordValue.value = it })
 
-            OutlinedTextField(
-                value = passwordValue.value,
-                onValueChange = { passwordValue.value = it },
-                trailingIcon = {
-                    IconButton(onClick = { passwordVisibility.value = !passwordVisibility.value }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_password),
-                            contentDescription = "password visibility",
-                            tint = if (passwordVisibility.value) Color.Black else Color.Gray
-
-                        )
-                    }
-                },
-                visualTransformation = if (passwordVisibility.value) VisualTransformation.None else PasswordVisualTransformation(),
-                label = { Text(text = "Enter Password") },
-                placeholder = { Text(text = "Password") },
-                singleLine = true,
-                isError = false,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 10.dp)
-            )
-            if (isError.value){
-                Text(
-                    text = "Password cannot be Empty",
-                    color = MaterialTheme.colors.error,
-                    style = MaterialTheme.typography.caption,
-                    modifier = Modifier.padding(start = 16.dp)
-                )
-            }
-            OutlinedTextField(
-                value = confirmPasswordValue.value,
-                onValueChange = { confirmPasswordValue.value = it },
-                trailingIcon = {
-                    IconButton(onClick = { confirmPasswordVisibility.value = !confirmPasswordVisibility.value }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_password),
-                            contentDescription = "confirm password visibility",
-                            tint = if (confirmPasswordVisibility.value) Color.Black else Color.Gray
-
-                        )
-                    }
-                },
-                visualTransformation = if (confirmPasswordVisibility.value) VisualTransformation.None else PasswordVisualTransformation(),
-                label = { Text(text = "Confirm Password") },
-                placeholder = { Text(text = "Confirm Password") },
-                singleLine = true,
-                isError = false,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 10.dp)
-            )
-            if (isError.value){
-                Text(
-                    text = "Confirm Password cannot be Empty",
-                    color = MaterialTheme.colors.error,
-                    style = MaterialTheme.typography.caption,
-                    modifier = Modifier.padding(start = 16.dp)
-                )
-            }
+            ConfirmPasswordTextField(text = passwordValue.value, confirmText = confirmPasswordValue.value, labelText = "Confirm Password", onTextChanged = {confirmPasswordValue.value = it })
 
             Button(
                 onClick = { inputValidation(emailValue.value,passwordValue.value,navController,registerViewModel,context) },
@@ -168,9 +110,11 @@ fun RegisterPage(navController: NavController,
                 colors = ButtonDefaults.buttonColors(backgroundColor = PrimaryColor),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 10.dp, horizontal = 10.dp)
+                    .padding(vertical = 10.dp, horizontal = 10.dp),
+                enabled = passwordValue.value == confirmPasswordValue.value
             ) {
                 Text(text = "Sign Up", color = Color.White)
+
             }
 
             Spacer(modifier = Modifier.padding(top = 5.dp))

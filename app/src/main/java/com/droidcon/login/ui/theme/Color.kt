@@ -9,3 +9,4 @@ val Teal200 = Color(0xFF03DAC5)
 
 val PrimaryColor = Color(0xFF41c300)
 val SecondaryColor = Color(0xFFF5F5F5)
+val SoftRed = Color(0xFFF47174)
